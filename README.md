@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Floorplan Used**<br>1worklist|
 |**Service Type**<br>SAP System (ABAP On Premise)|
-|**Service URL**<br>http://proferdev:8001/sap/opu/odata/sap/ZSV_NOTIFIC_AUTO_SRV
+|**Service URL**<br>.../ZSV_NOTIFIC_AUTO_SRV
 |**Module Name**<br>notifconf|
 |**Application Title**<br>Notificaciones Automaticas|
 |**Namespace**<br>profertil|
