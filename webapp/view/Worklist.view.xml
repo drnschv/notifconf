@@ -1,0 +1,185 @@
+<mvc:View
+	controllerName="profertil.notifconf.controller.Worklist"
+	xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"     
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:semantic="sap.f.semantic"
+    displayBlock="true">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false">
+
+		<semantic:titleHeading>
+			<Title text="{i18n>worklistTitle}" level="H2"/>
+		</semantic:titleHeading>
+
+
+        <semantic:headerContent>
+
+            <smartFilterBar:SmartFilterBar 
+                id="smartFilterBarID" 
+                entitySet="ConfiguracionSet" 
+                persistencyKey="SmartFilter_Explored" 
+                enableBasicSearch="false" 
+                considerSelectionVariants="false"
+                useToolbar="false"
+                showFilterConfiguration="false">
+
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="brsch" index="0"  
+                        label="Segmento"
+                        visibleInAdvancedArea="true" 
+                        visible="true"> 
+                    </smartFilterBar:ControlConfiguration>
+                </smartFilterBar:controlConfiguration>
+
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="roltxt" index="1" 
+                        label="Rol" 
+                        visibleInAdvancedArea="true" 
+                        visible="true"> 
+                    </smartFilterBar:ControlConfiguration>
+                </smartFilterBar:controlConfiguration>
+
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="kunnr" index="2"  
+                        label="Cliente"
+                        visibleInAdvancedArea="true" 
+                        visible="true"> 
+                    </smartFilterBar:ControlConfiguration>
+                </smartFilterBar:controlConfiguration>
+
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="notifid" index="3" 
+                        label="Notificacion" 
+                        visibleInAdvancedArea="true" 
+                        visible="true"> 
+                    </smartFilterBar:ControlConfiguration>
+                </smartFilterBar:controlConfiguration>
+
+            </smartFilterBar:SmartFilterBar>
+
+        </semantic:headerContent>
+
+
+		<semantic:content>
+
+            <smartTable:SmartTable 
+                id="smConfiguracion" 
+                entitySet="ConfiguracionSet" 
+                tableType="ResponsiveTable" 
+                smartFilterId="smartFilterBarID" 
+                useExportToExcel="false" 
+                useVariantManagement="false" 
+                header="{i18n>configuracionTxt}"
+                useTablePersonalisation="true" 
+                showTablePersonalisation="false" 
+                showRowCount="true" 
+                persistencyKey="SmartTableAnalytical_Explored" 
+                enableAutoBinding="true" 
+                demandPopin="true"
+                class="sapUiLargeMarginBottom">
+
+                <smartTable:customToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer/>
+                        <Switch change=".onChangeActivaMasiva"
+                            customTextOn="Si" 
+                            customTextOff="No"
+                            state="false" >
+                        </Switch>
+                        <Button 
+                            text="Nueva Configuracion" 
+                            tooltip="Nueva Configuracion"
+                            press=".onPressAdd">
+                        </Button>
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                
+                <Table 
+                    id="tableData"
+                    growing="true" 
+                    mode="None"
+                    growingThreshold="5"
+                    sticky="ColumnHeaders">
+                    <headerToolbar>
+                    
+                    </headerToolbar>
+                    <columns>
+
+                        <Column id="brschID">
+                            <customData> 
+                                <core:CustomData key="p13nData" value='\{"columnKey": "brsch", "leadingProperty": "brsch", "additionalProperty": "brtxt", "sortProperty": "brtxt"}'/>
+                            </customData>
+                            <Label text="{/#Configuracion/brtxt/@sap:label}" />
+                        </Column>
+
+                        <Column id="rolID">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "rol", "leadingProperty": "rol", "additionalProperty": "roltxt", "sortProperty": "roltxt"}' />
+                            </customData>
+                            <Label text="{/#Configuracion/roltxt/@sap:label}" />
+                        </Column>
+
+                        <Column id="kunnrID">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "kunnr", "leadingProperty": "kunnr", "additionalProperty":"name1", "sortProperty": "name1"}' />
+                            </customData>
+                            <Label text="{/#Configuracion/name1/@sap:label}" />
+                        </Column>
+
+                        <Column id="notifidID">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "notifid", "leadingProperty": "notifid", "additionalProperty":"notiftxt", "sortProperty": "notiftxt"}' />
+                            </customData>
+                            <Label text="{/#Configuracion/notiftxt/@sap:label}" />
+                        </Column>
+
+                        <Column id="activaID">
+                            <customData>
+                                <core:CustomData key="p13nData"
+                                    value='\{"columnKey": "activa", "leadingProperty": "activa", "sortProperty": "activa"}' />
+                            </customData>
+                            <Label text="{/#Configuracion/activa/@sap:label}" />
+                        </Column>
+
+
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{brtxt}" />
+                                <Text text="{roltxt}" />
+                                <Text text="{name1}" />
+                                <Text text="{notiftxt}" />
+                                <Switch change=".onChangeActiva"
+                                    customTextOn="Si" 
+                                    customTextOff="No"
+                                    state="{
+                                        path: 'activa',
+                                        formatter: '.formatter.formatActiva'
+                                    }" />
+
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+
+                </Table>
+
+
+            </smartTable:SmartTable>
+
+		</semantic:content>
+
+	</semantic:SemanticPage>
+
+</mvc:View>

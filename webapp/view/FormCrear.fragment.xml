@@ -1,0 +1,80 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <VBox>
+        <f:SimpleForm 
+            id="formCrear" 
+            editable="true"
+            layout="ResponsiveGridLayout" 
+            labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="12"
+			labelSpanS="12"
+            emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0">
+
+            <f:content>
+                <core:Title text=""></core:Title> 
+                    <Label text="{/#Configuracion/brtxt/@sap:label}" />
+                    <MultiComboBox id="brschID"
+			            selectionFinish=".onSelectionFinishBrsch"
+                        items="{
+                            path: '/VH_SegmentosSet',
+                            sorter: { path: 'brtxt' }
+                        }">
+                        <core:Item key="{brsch}" text="{brtxtl}" />
+                    </MultiComboBox>
+                   
+                    <Label text="{/#Configuracion/roltxt/@sap:label}" />
+                    <MultiComboBox id="rolID"
+                        selectionFinish=".onSelectionFinishRol"
+                        items="{
+                            path: '/VH_RolesSet',
+                            sorter: { path: 'roltxt' }
+                        }">
+                        <core:Item key="{rol}" text="{roltxt}" />
+                    </MultiComboBox>
+                    
+                    <Label text="{/#Configuracion/name1/@sap:label}"/>
+                    <MultiInput id="kunnrIDM" 
+                        suggestionItems="{
+                            path: '/VH_ClientesSet',
+                            sorter: { path: 'name1' }
+                        }"
+                        valueHelpRequest=".handleVHKunnr">
+                        <core:Item key="{kunnr}" text="{name1}" />
+                    </MultiInput>
+
+                    <Label text="{/#Configuracion/notiftxt/@sap:label}" />
+                    <ComboBox id="notifidID"
+                        required="true"
+                        change=".onChangeNotifid"
+                        items="{
+                            path: '/VH_NotificacionesSet',
+                            sorter: { path: 'notiftxt' }
+                        }">
+                        <core:Item key="{notifid}" text="{notiftxt}" />
+                    </ComboBox>
+
+                    <Label text="{/#Configuracion/activa/@sap:label}" />
+                    <Switch id="activaID" 
+                        change=".onChangeActiva"
+                        customTextOn="Si" 
+                        customTextOff="No" 
+                        state="true"  >
+                    </Switch> 
+                <Label text="" />
+                <Button text="Validar Configuraciones" type="Accept" icon="sap-icon://accept" press=".onPressVerConfiguracion" />         
+                <core:Title text=""></core:Title>  
+                                 
+                                                  
+            </f:content>
+        </f:SimpleForm>
+
+    </VBox>
+
+</core:FragmentDefinition>

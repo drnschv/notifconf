@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <TableSelectDialog 
+        id="myDialog"
+        noDataText="{i18n>noDataTxt}"
+        title="{i18n>dialogConfigTitle}"
+        search="._handleVHConfiguracionSearch"
+        confirm="._handleVHConfiguracionClose"
+        cancel="._handleVHConfiguracionClose"
+        items="{path: '/VH_ConfiguracionSet', sorter: {path: 'name1'}}" >
+		<ColumnListItem>
+			<cells>
+                <Text text="{brtxt}" />
+                <Text text="{roltxt}" />
+                <Text text="{name1}" />
+                <Text text="{notiftxt}" />
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column><Text text="{/#VH_Configuracion/brtxt/@sap:label}"/></Column>
+			<Column><Text text="{/#VH_Configuracion/roltxt/@sap:label}"/></Column>
+			<Column><Text text="{/#VH_Configuracion/name1/@sap:label}"/></Column>
+			<Column><Text text="{/#VH_Configuracion/notiftxt/@sap:label}"/></Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

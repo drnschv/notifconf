@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSV_NOTIFIC_AUTO_SRV" xml:lang="es" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="VH_Segmentos" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="brsch"/>
+                </Key>
+                <Property Name="brsch" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Cod.Segmento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="brtxt" Type="Edm.String" MaxLength="20" sap:label="Desc.Segmento" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="brtxtl" Type="Edm.String" MaxLength="30" sap:label="Txt.Segmento" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="VH_Roles" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="roleid"/>
+                </Key>
+                <Property Name="rol" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Cod.Rol" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="roltxt" Type="Edm.String" MaxLength="60" sap:label="Rol" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="VH_Clientes" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="kunnr"/>
+                </Key>
+                <Property Name="kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cliente" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="name1" Type="Edm.String" MaxLength="35" sap:label="Nombre" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="name1l" Type="Edm.String" MaxLength="50" sap:label="Nombre.Cliente" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="VH_Notificaciones" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="notifid"/>
+                </Key>
+                <Property Name="notifid" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Cod.Notif." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="notiftxt" Type="Edm.String" MaxLength="30" sap:label="Desc.Notif" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="notiftxtl" Type="Edm.String" MaxLength="40" sap:label="Txt.Notif" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="Configuracion" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="kunnr"/>
+                    <PropertyRef Name="rol"/>
+                    <PropertyRef Name="notifid"/>
+                </Key>
+                <Property Name="kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Cod.Cliente"/>
+                <Property Name="rol" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Cod.Rol"/>
+                <Property Name="notifid" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Cod.Notif"/>
+                <Property Name="activa" Type="Edm.String" MaxLength="1" sap:label="Activa(Si/No)"/>
+                <Property Name="brsch" Type="Edm.String" MaxLength="4" sap:label="Cod.Zona"/>
+                <Property Name="name1" Type="Edm.String" MaxLength="35" sap:label="Nombre"/>
+                <Property Name="roltxt" Type="Edm.String" MaxLength="60" sap:label="Desc.Rol"/>
+                <Property Name="notiftxt" Type="Edm.String" MaxLength="30" sap:label="Desc.Notif"/>
+                <Property Name="brtxt" Type="Edm.String" MaxLength="20" sap:label="Desc.Zona"/>
+            </EntityType>
+            <EntityContainer Name="ZSV_NOTIFIC_AUTO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
+                <EntitySet Name="VH_SegmentosSet" EntityType="ZSV_NOTIFIC_AUTO_SRV.VH_Segmentos" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="VH_RolesSet" EntityType="ZSV_NOTIFIC_AUTO_SRV.VH_Roles" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="VH_ClientesSet" EntityType="ZSV_NOTIFIC_AUTO_SRV.VH_Clientes" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="VH_NotificacionesSet" EntityType="ZSV_NOTIFIC_AUTO_SRV.VH_Notificaciones" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ConfiguracionSet" EntityType="ZSV_NOTIFIC_AUTO_SRV.Configuracion" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://proferdev:8001/sap/opu/odata/sap/ZSV_NOTIFIC_AUTO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://proferdev:8001/sap/opu/odata/sap/ZSV_NOTIFIC_AUTO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="valueHelpDialog"
+		title="Clientes"
+		items="{path: '/VH_ClientesSet', sorter: {path: 'name1'}}"
+		search="_handleVHKunnrSearch"
+		confirm="_handleVHKunnrClose"
+		cancel="_handleVHKunnrClose"
+		multiSelect="true">
+		<StandardListItem
+			title="{name1}"
+			description="{kunnr}" />
+	</SelectDialog>
+</core:FragmentDefinition>
