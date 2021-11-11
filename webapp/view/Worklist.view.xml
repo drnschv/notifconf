@@ -88,13 +88,18 @@
                 <smartTable:customToolbar>
                     <OverflowToolbar>
                         <ToolbarSpacer/>
-                        <Switch change=".onChangeActivaMasiva"
-                            customTextOn="Si" 
-                            customTextOff="No"
-                            state="false" >
-                        </Switch>
-                        <Button 
-                            text="Nueva Configuracion" 
+                        <Button id="btnActivarId" enabled="false"                           
+                            icon="sap-icon://connected"
+                            tooltip="Activar los items seleccionados"
+                            press=".onPressActivar">
+                        </Button>
+                        <Button id="btnDesactivarId" enabled="false"
+                            icon="sap-icon://disconnected"
+                            tooltip="Desactivar los items seleccionados"
+                            press=".onPressDesactivar">
+                        </Button>
+                        <Button    
+                            icon="sap-icon://user-settings" 
                             tooltip="Nueva Configuracion"
                             press=".onPressAdd">
                         </Button>
@@ -104,12 +109,12 @@
                 <Table 
                     id="tableData"
                     growing="true" 
-                    mode="None"
+                    mode="MultiSelect"
+                    selectionChange=".onSelectionChange"
                     growingThreshold="5"
+                    updateStarted=".onUpdateStarted"
                     sticky="ColumnHeaders">
-                    <headerToolbar>
                     
-                    </headerToolbar>
                     <columns>
 
                         <Column id="brschID">
@@ -183,3 +188,16 @@
 	</semantic:SemanticPage>
 
 </mvc:View>
+
+
+<!--
+    text="Activar Marcados"
+    text="Desactivar Marcados" 
+    text="Nueva Configuracion"
+<Switch change=".onChangeActivaMasiva"
+                            customTextOn="Si" 
+                            customTextOff="No"
+                            state="false" >
+                        </Switch>
+
+-->
