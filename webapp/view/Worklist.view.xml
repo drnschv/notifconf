@@ -90,16 +90,19 @@
                         <ToolbarSpacer/>
                         <OverflowToolbarButton id="btnActivarId" enabled="false"                           
                             icon="sap-icon://connected"
+                            type="Accept"
                             tooltip="Activar los items seleccionados"
                             press=".onPressActivar">
                         </OverflowToolbarButton>
                         <OverflowToolbarButton id="btnDesactivarId" enabled="false"
                             icon="sap-icon://disconnected"
+                            type="Reject"
                             tooltip="Desactivar los items seleccionados"
                             press=".onPressDesactivar">
                         </OverflowToolbarButton>
                         <OverflowToolbarButton    
                             icon="sap-icon://user-settings" 
+                            type="Emphasized"
                             tooltip="Nueva Configuracion"
                             press=".onPressAdd">
                         </OverflowToolbarButton>
@@ -166,7 +169,8 @@
                                 <Text text="{roltxt}" />
                                 <Text text="{name1}" />
                                 <Text text="{notiftxt}" />
-                                <Switch change=".onChangeActiva"
+                                <Switch change=".onChangeActiva" 
+                                    type="AcceptReject"
                                     customTextOn="Si" 
                                     customTextOff="No"
                                     state="{
