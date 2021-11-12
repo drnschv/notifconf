@@ -88,21 +88,21 @@
                 <smartTable:customToolbar>
                     <OverflowToolbar>
                         <ToolbarSpacer/>
-                        <Button id="btnActivarId" enabled="false"                           
+                        <OverflowToolbarButton id="btnActivarId" enabled="false"                           
                             icon="sap-icon://connected"
                             tooltip="Activar los items seleccionados"
                             press=".onPressActivar">
-                        </Button>
-                        <Button id="btnDesactivarId" enabled="false"
+                        </OverflowToolbarButton>
+                        <OverflowToolbarButton id="btnDesactivarId" enabled="false"
                             icon="sap-icon://disconnected"
                             tooltip="Desactivar los items seleccionados"
                             press=".onPressDesactivar">
-                        </Button>
-                        <Button    
+                        </OverflowToolbarButton>
+                        <OverflowToolbarButton    
                             icon="sap-icon://user-settings" 
                             tooltip="Nueva Configuracion"
                             press=".onPressAdd">
-                        </Button>
+                        </OverflowToolbarButton>
                     </OverflowToolbar>
                 </smartTable:customToolbar>
                 
@@ -111,7 +111,7 @@
                     growing="true" 
                     mode="MultiSelect"
                     selectionChange=".onSelectionChange"
-                    growingThreshold="5"
+                    growingThreshold="50"
                     updateStarted=".onUpdateStarted"
                     sticky="ColumnHeaders">
                     

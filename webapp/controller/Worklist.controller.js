@@ -71,15 +71,16 @@ sap.ui.define([
 
         updateConfiguracion: function (sPath, oData) {
             var oModel = this.getView().getModel();
-            oModel.setUseBatch(false);
+            this.setUseBatchModel(false);
+            var that = this;
             return new Promise(function (resolve, reject) {
                 oModel.update(sPath, oData, {
                     success: function () {
-                        oModel.setUseBatch(true);
+                        that.setUseBatchModel(true);
                         resolve();
                     },
                     error: function (oError) {
-                        oModel.setUseBatch(true);
+                        that.setUseBatchModel(true);
                         reject();
                     }
                 });
@@ -106,18 +107,12 @@ sap.ui.define([
         },
 
         onPressDesactivar: function (oEvent) {
-            //var oTable = this.byId("tableData");
-            //var iSelectedItems = oTable.getSelectedItems().length;
-            //sap.m.MessageToast.show("Desactivar " + iSelectedItems + " seleccionados"); 
             var oItems = this.byId("tableData").getSelectedItems();
             this.confirmarGrabar(oItems, 'N');
 
         },
 
         onPressActivar: function (oEvent) {
-            //var oTable = this.byId("tableData");
-            //var iSelectedItems = oTable.getSelectedItems().length;
-            //sap.m.MessageToast.show("Activar " + iSelectedItems + " seleccionados"); 
             var oItems = this.byId("tableData").getSelectedItems();
             this.confirmarGrabar(oItems, 'S');
 
@@ -137,7 +132,6 @@ sap.ui.define([
         },
 
         onUpdateStarted: function (oEvent) {
-            console.log(oEvent.getParameters());
             var oTable = this.byId("tableData");
             oTable.getSelectedItems().forEach( item => {
                 oTable.setSelectedItem(item, false);
@@ -188,16 +182,15 @@ sap.ui.define([
             var aSuccess = [];
             var aError = [];
             var oModel = this.getView().getModel();
-            oModel.setUseBatch(false);
-            //var sPath = "/ConfiguracionSet";
-            var sActiva = bActiva ? "S" : "N";
+            this.setUseBatchModel(false);
             var that = this;
             var runCreate = function (dataIndex) {
                 if (aDataObject.length === dataIndex) {
                     sap.m.MessageToast.show("Configuraciones actualizadas: " + aSuccess.length);
-                    //console.warn("OK: " + aSuccess.length + ", Errores: " + aError.length );
-                    that.onNavBack();
                     that.getView().setBusy(false);
+                    that.setUseBatchModel(true);
+                    that.onSelectionChange();
+                    //that.onNavBack();
                     return;
                 }
 
@@ -205,7 +198,7 @@ sap.ui.define([
                 var oDataObject = {};
                 var oNewData = {};
                 oDataObject = aDataObject[dataIndex];
-                var sPath = oDataObject.getBindignContextPath();
+                var sPath = oDataObject.getBindingContextPath();
                 oNewData.kunnr = oDataObject.getBindingContext().getObject().kunnr;
                 oNewData.rol = oDataObject.getBindingContext().getObject().rol;
                 oNewData.notifid = oDataObject.getBindingContext().getObject().notifid;
@@ -226,6 +219,10 @@ sap.ui.define([
             this.getView().setBusy(true);
             runCreate(0);         
 
+        },
+
+        setUseBatchModel: function (bUseBatch) {
+            this.getView().getModel().setUseBatch(bUseBatch);
         },
 
 		/* =========================================================== */
