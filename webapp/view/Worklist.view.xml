@@ -167,7 +167,8 @@
                             <cells>
                                 <Text text="{brtxt}" />
                                 <Text text="{roltxt}" />
-                                <Text text="{name1}" />
+                                <ObjectIdentifier title="{name1}" 
+                                    text="{path: 'kunnr', formatter: '.formatter.formatLeadingZeros'}" />
                                 <Text text="{notiftxt}" />
                                 <Switch change=".onChangeActiva" 
                                     type="AcceptReject"

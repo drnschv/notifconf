@@ -23,6 +23,12 @@ sap.ui.define([], function () {
             return false;
         },
 
+        formatLeadingZeros: function (sValue) {
+            for (var x=0; x < sValue.length && sValue.substr(x,1) === "0"; x++);
+            return sValue.slice(x,10);
+
+        }
+
 	};
 
 });
